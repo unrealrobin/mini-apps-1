@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <h1> Tic-Tac-Toe</h1>
     <div id='board'>
       <div class="boardSpot" id='0'></div>
       <div class="boardSpot" id='1'></div>
@@ -18,16 +19,16 @@
     </div>
     <div id="display">Make your move!</div>
     <div id='scoreBoard'>
-      <div>
-        <p id="xTeamName">X</p>
-        <span id='xTeamPoints'>0</span>
+      <div class='sbChild'>
+        <div class='teamPoints' id="xTeamName">X</div>
+        <div class='teamPoints' id='xTeamPoints'>0</div>
       </div>
-      <div>
-        <p id="oTeamName">O</p>
-        <span id='oTeamPoints'>0</span>
+      <div class='sbChild'>
+        <div class='teamPoints' id="oTeamName">O</div>
+        <div class='teamPoints' id='oTeamPoints'>0</div>
       </div>
     </div>
-    <button type="button" onclick="reset()">Reset Board</button>
+    <button type="button" onclick="reset()" >Reset Board</button>
 
     <script src="app.js"></script>
   </body>

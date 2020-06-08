@@ -48,6 +48,8 @@ let oPoints = 0;
   } else {
     mark = "O";
   }
+
+  //show mark on DOM by replacing elements text
   if(event.target.innerText == ""){
     event.target.innerText = mark;
     whichMark = !whichMark;
@@ -112,19 +114,21 @@ let reset = () => {
     return null;
   }
  }
-
+//things to do upon a winning game
  let actionsOnWin = (mark) => {
   display.innerHTML = `${mark} wins! Play Again!`;
 
-  //update score
+  //increment score for winning team
   if (mark == 'X'){
     xPoints++;
   }else{
     oPoints++;
   }
 
+  //assign points to the winner on the scoreboard
   assignPoints(mark);
 
+  //after 2 sec. reset the board, and let the winner go first on next game.
   setTimeout(function(){
     reset();
     if(mark == "O"){
@@ -134,7 +138,7 @@ let reset = () => {
 
 
  }
-
+// give winners points
  let assignPoints = (mark) => {
   //finding dom elements for each teams score
   let x = document.getElementById('xTeamPoints');
@@ -158,8 +162,35 @@ let reset = () => {
    })
  };
 
+ let assignTeamNames = () => {
+   let xTeamName = prompt('X Team Player Name');
+   let oTeamName = prompt('O Team Player Name');
+
+   if (xTeamName) {
+     document.getElementById('xTeamName').innerText = `${xTeamName} : `;
+   } else {
+     xTeamName = "X ";
+   }
+
+   if (oTeamName) {
+    document.getElementById('oTeamName').innerText = `${oTeamName} : `;
+   } else {
+    oTeamName = "O";
+
+   }
+
+   display.innerHTML = `Welcome Conqueror ${xTeamName} & Beast Slayer ${oTeamName}.`
+
+   setTimeout(function(){
+     display.innerHTML = "Make your move!"
+   }, 5000)
+
+ }
 
 
 
+//need to invoke this functin on page load
  giveSpotsFunctionality();
+
+ assignTeamNames();
 

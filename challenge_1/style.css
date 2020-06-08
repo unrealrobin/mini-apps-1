@@ -1,31 +1,70 @@
 body {
-  width: 100%;
-  height: 100%;
-  /* display: flex;
-  flex-direction: column; */
+  width: 96vw;
+  height: 95vh;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(47, 155, 155);
+  align-items: center;
+  justify-content: center;
+}
+
+h1 {
+  font-size: 30;
+  margin-top: 30px;
+  color: aquamarine;
 }
 
 #board {
   display: grid;
-  grid-template-columns: 60px 60px 60px;
-  grid-template-rows: 60px 60px 60px;
-  max-width: 195px;
-  min-width: 195px;
+  grid-template-columns: 100px 100px 100px;
+  grid-template-rows: 100px 100px 100px;
+  max-width: 300px;
+  min-width: 300px;
+
+  animation-name: spinner;
+  animation-timing-function: ease;
 }
 
 .boardSpot {
-  background-color: bisque;
-  border: 1px solid black;
+  background-color: rgb(21, 49, 51);
+  border: 1px solid rgb(255, 255, 255);
   text-align: center;
-  line-height: 60px;;
+  line-height: 100px;
+  color: white;
+  font-weight: 700;
+  font-size: 16;
 }
 
 #display {
-  width: 180px;
-  height: 30px;
-  background-color: cadetblue;
+  margin-top: 8px;;
+  width: 400px;
+  height: 45px;
+  background-color: rgb(244, 229, 193);
   text-align: center;
-  line-height: 30px;
+  line-height: 45px;
   overflow: auto;
+
   /* resize: vertical; */
+}
+
+button{
+  margin-top: 100px;
+}
+
+.teamPoints {
+  display: inline-block;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.sbChild {
+  margin-top: 10px;
+}
+
+/* Rotation Animatin */
+
+@keyframes spinner {
+  from {transform: rotate(0)};
+  to{transform: rotate(90)}
 }
