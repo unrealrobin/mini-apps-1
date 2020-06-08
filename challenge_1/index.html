@@ -1,12 +1,36 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title></title>
+    <title>Robin Tic-Tac-Toe</title>
+    <style>
+      #board {
+        display: grid;
+        grid-template-columns: 60px 60px 60px;
+        grid-template-rows: 60px 60px 60px;
+        max-width: 195px;
+        min-width: 195px;
+      }
+
+      .boardSpot {
+        background-color: bisque;
+        border: 1px solid black;
+      }
+
+    </style>
   </head>
   <body>
-
-
-    <script src="/app.js"> </script>
+    <div id='board'>
+      <div class="boardSpot" id='0'></div>
+      <div class="boardSpot" id='1'></div>
+      <div class="boardSpot" id='2'></div>
+      <div class="boardSpot" id='3'></div>
+      <div class="boardSpot" id='4'></div>
+      <div class="boardSpot" id='5'></div>
+      <div class="boardSpot" id='6'></div>
+      <div class="boardSpot" id='7'></div>
+      <div class="boardSpot" id='8'></div>
+    </div>
+    <script src="app.js"> </script>
   </body>
 </html>
 
