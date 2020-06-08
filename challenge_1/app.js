@@ -15,32 +15,15 @@
     b keep track of move count
       i. if 9 moves have been played and no one wins its a draw
 
-  let board = [[], [], [],
-              [], [], [],
-              [], [], []]
-
-  winning array patterns / css grid patterns
-              123
-              456
-              789
-              159
-              357
-              147
-              258
-              369
-
 */
 
 //if true X otherwise O
 let whichMark = true;
 let mark;
 let score = 0;
+let moveCount = 0;
 let board = document.getElementById('board');
-
-
-let getArrayIndexFromElement = () => {
-
-}
+let allChildren = Array.from(board.children);
 
 //function that adds a mark to a board location
  let playMove = (event) => {
@@ -51,21 +34,80 @@ let getArrayIndexFromElement = () => {
   } else {
     mark = "O";
   }
+  if(event.target.innerHTML == ""){
+    event.target.innerHTML = mark;
+    whichMark = !whichMark;
+    moveCount++;
+    console.log(moveCount)
+  }else{
+    console.log('Must play in an unoccupied spot!')
+  }
 
-  event.target.innerHTML = mark;
-  whichMark = !whichMark;
 
   //functionality to check for winner
-  checkForWinner();
+  if (moveCount >= 5 && moveCount < 9 ) {
+    checkForWinner('X');
+    checkForWinner('O');
+  } else if (moveCount == 9){
+    let xs = checkForWinner('X');
+    let os = checkForWinner('O');
+    if(xs == null && os == null){
+      console.log('It\'s a Tie, Play again!')
+    }
+  }
+
  }
 
+
+/*
+              012
+              345
+              678
+              048
+              246
+              036
+              147
+              258
+*/
+
+//resets the board markers, counts && scores
+let reset = () => {
+
+  allChildren.forEach(child => {
+    child.innerHTML = "";
+  });
+
+  moveCount = 0;
+  whichMark = true;
+
+}
  //function that loops through the divs/array and checks for a winning pattern
- let checkForWinner = () => {
-
+ let checkForWinner = (mark) => {
+  if(allChildren[0].innerHTML == mark && allChildren[1].innerHTML == mark && allChildren[2].innerHTML == mark) {
+    console.log(`${mark} wins! Play Again!`)
+  } else if(allChildren[3].innerHTML == mark && allChildren[4].innerHTML == mark && allChildren[5].innerHTML == mark) {
+    console.log(`${mark} wins! Play Again!`)
+  } else if(allChildren[6].innerHTML == mark && allChildren[7].innerHTML == mark && allChildren[8].innerHTML == mark) {
+    console.log(`${mark} wins! Play Again!`)
+  } else if(allChildren[0].innerHTML == mark && allChildren[4].innerHTML == mark && allChildren[8].innerHTML == mark) {
+    console.log(`${mark} wins! Play Again!`)
+  } else if(allChildren[2].innerHTML == mark && allChildren[4].innerHTML == mark && allChildren[6].innerHTML == mark) {
+    console.log(`${mark} wins! Play Again!`)
+  } else if(allChildren[0].innerHTML == mark && allChildren[3].innerHTML == mark && allChildren[6].innerHTML == mark) {
+    console.log(`${mark} wins! Play Again!`)
+  } else if(allChildren[1].innerHTML == mark && allChildren[4].innerHTML == mark && allChildren[7].innerHTML == mark) {
+    console.log(`${mark} wins! Play Again!`)
+  } else if(allChildren[2].innerHTML == mark && allChildren[5].innerHTML == mark && allChildren[8].innerHTML == mark) {
+    console.log(`${mark} wins! Play Again!`)
+  } else{
+    return null;
+  }
  }
 
+ //adds event listeners to each spot that listen for click to place move
+ // invokes the play move fuction on click
  let giveSpotsFunctionality = () => {
-   let allChildren = Array.from(board.children);
+
    //console.log(allChildren)
    allChildren.forEach(child => {
     child.addEventListener('click', function(event){
@@ -73,6 +115,9 @@ let getArrayIndexFromElement = () => {
     })
    })
  };
+
+
+
 
  giveSpotsFunctionality();
 
