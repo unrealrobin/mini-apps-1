@@ -17,14 +17,14 @@
 
 */
 
-//if true X otherwise O
+//global variables....ewww
 let whichMark = true;
 let mark;
 let score = 0;
 let moveCount = 0;
 let board = document.getElementById('board');
 let allChildren = Array.from(board.children);
-
+let display = document.getElementById('display');
 //function that adds a mark to a board location
  let playMove = (event) => {
 
@@ -34,13 +34,12 @@ let allChildren = Array.from(board.children);
   } else {
     mark = "O";
   }
-  if(event.target.innerHTML == ""){
-    event.target.innerHTML = mark;
+  if(event.target.innerText == ""){
+    event.target.innerText = mark;
     whichMark = !whichMark;
     moveCount++;
-    console.log(moveCount)
-  }else{
-    console.log('Must play in an unoccupied spot!')
+  }else if (event.target.innerText !== ""){
+    display.innerHTML = 'Must play in an unoccupied spot!';
   }
 
 
@@ -52,6 +51,9 @@ let allChildren = Array.from(board.children);
     let xs = checkForWinner('X');
     let os = checkForWinner('O');
     if(xs == null && os == null){
+      setTimeout(function(){
+        reset();
+      }, 3000)
       console.log('It\'s a Tie, Play again!')
     }
   }
@@ -79,29 +81,40 @@ let reset = () => {
 
   moveCount = 0;
   whichMark = true;
+  display.innerHTML = 'Make your move!';
+
 
 }
  //function that loops through the divs/array and checks for a winning pattern
  let checkForWinner = (mark) => {
   if(allChildren[0].innerHTML == mark && allChildren[1].innerHTML == mark && allChildren[2].innerHTML == mark) {
-    console.log(`${mark} wins! Play Again!`)
+    updateTextOnWin(mark);
   } else if(allChildren[3].innerHTML == mark && allChildren[4].innerHTML == mark && allChildren[5].innerHTML == mark) {
-    console.log(`${mark} wins! Play Again!`)
+    updateTextOnWin(mark);
   } else if(allChildren[6].innerHTML == mark && allChildren[7].innerHTML == mark && allChildren[8].innerHTML == mark) {
-    console.log(`${mark} wins! Play Again!`)
+    updateTextOnWin(mark);
   } else if(allChildren[0].innerHTML == mark && allChildren[4].innerHTML == mark && allChildren[8].innerHTML == mark) {
-    console.log(`${mark} wins! Play Again!`)
+    updateTextOnWin(mark);
   } else if(allChildren[2].innerHTML == mark && allChildren[4].innerHTML == mark && allChildren[6].innerHTML == mark) {
-    console.log(`${mark} wins! Play Again!`)
+    updateTextOnWin(mark);
   } else if(allChildren[0].innerHTML == mark && allChildren[3].innerHTML == mark && allChildren[6].innerHTML == mark) {
-    console.log(`${mark} wins! Play Again!`)
+    updateTextOnWin(mark);
   } else if(allChildren[1].innerHTML == mark && allChildren[4].innerHTML == mark && allChildren[7].innerHTML == mark) {
-    console.log(`${mark} wins! Play Again!`)
+    updateTextOnWin(mark);
   } else if(allChildren[2].innerHTML == mark && allChildren[5].innerHTML == mark && allChildren[8].innerHTML == mark) {
-    console.log(`${mark} wins! Play Again!`)
+    updateTextOnWin(mark);
   } else{
     return null;
   }
+ }
+
+ let updateTextOnWin = (mark) => {
+  display.innerHTML = `${mark} wins! Play Again!`;
+  //update score
+
+  setTimeout(function(){
+    reset();
+  }, 2000)
  }
 
  //adds event listeners to each spot that listen for click to place move
