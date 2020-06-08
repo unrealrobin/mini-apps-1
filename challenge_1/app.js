@@ -27,19 +27,24 @@
 
 */
 
-//global variables....ewww
-let whichMark = true;
-let mark;
-let score = 0;
-let moveCount = 0;
-let board = document.getElementById('board');
-let allChildren = Array.from(board.children);
-let display = document.getElementById('display');
-let xPoints = 0;
-let oPoints = 0;
+/*
 
+      MODEL
+
+*/
+
+ let whichMark = true;
+ let mark= "";
+ let score = 0;
+ let moveCount = 0;
+ let board = document.getElementById('board');
+ let allChildren = Array.from(board.children);
+ let display = document.getElementById('display');
+ let xPoints = 0;
+ let oPoints = 0;
 
 //function that adds a mark to a board location
+//user interaction
  let playMove = (event) => {
 
   //logic for mark
@@ -76,12 +81,9 @@ let oPoints = 0;
 
  }
 
-
-
-
 //resets the board markers, counts && scores
+//user interaction
 let reset = () => {
-
   allChildren.forEach(child => {
     child.innerHTML = "";
   });
@@ -92,31 +94,17 @@ let reset = () => {
 
 
 }
- //function that loops through the divs/array and checks for a winning pattern
- let checkForWinner = (mark) => {
-  if(allChildren[0].innerHTML == mark && allChildren[1].innerHTML == mark && allChildren[2].innerHTML == mark) {
-    actionsOnWin(mark);
-  } else if(allChildren[3].innerHTML == mark && allChildren[4].innerHTML == mark && allChildren[5].innerHTML == mark) {
-    actionsOnWin(mark);
-  } else if(allChildren[6].innerHTML == mark && allChildren[7].innerHTML == mark && allChildren[8].innerHTML == mark) {
-    actionsOnWin(mark);
-  } else if(allChildren[0].innerHTML == mark && allChildren[4].innerHTML == mark && allChildren[8].innerHTML == mark) {
-    actionsOnWin(mark);
-  } else if(allChildren[2].innerHTML == mark && allChildren[4].innerHTML == mark && allChildren[6].innerHTML == mark) {
-    actionsOnWin(mark);
-  } else if(allChildren[0].innerHTML == mark && allChildren[3].innerHTML == mark && allChildren[6].innerHTML == mark) {
-    actionsOnWin(mark);
-  } else if(allChildren[1].innerHTML == mark && allChildren[4].innerHTML == mark && allChildren[7].innerHTML == mark) {
-    actionsOnWin(mark);
-  } else if(allChildren[2].innerHTML == mark && allChildren[5].innerHTML == mark && allChildren[8].innerHTML == mark) {
-    actionsOnWin(mark);
-  } else{
-    return null;
-  }
- }
+
+/*
+
+      VIEW
+
+*/
+
 //things to do upon a winning game
+//views
  let actionsOnWin = (mark) => {
-  display.innerHTML = `${mark} wins! Play Again!`;
+  display.innerHTML = `${mark}'s win! Play Again!`;
 
   //increment score for winning team
   if (mark == 'X'){
@@ -139,6 +127,7 @@ let reset = () => {
 
  }
 // give winners points
+//view
  let assignPoints = (mark) => {
   //finding dom elements for each teams score
   let x = document.getElementById('xTeamPoints');
@@ -150,10 +139,16 @@ let reset = () => {
 
  }
 
+ /*
+
+      CONTROLLER
+
+*/
+
  //adds event listeners to each spot that listen for click to place move
  // invokes the play move fuction on click
+ //controller
  let giveSpotsFunctionality = () => {
-
    //console.log(allChildren)
    allChildren.forEach(child => {
     child.addEventListener('click', function(event){
@@ -162,6 +157,7 @@ let reset = () => {
    })
  };
 
+//controllers
  let assignTeamNames = () => {
    let xTeamName = prompt('X Team Player Name');
    let oTeamName = prompt('O Team Player Name');
@@ -169,17 +165,18 @@ let reset = () => {
    if (xTeamName) {
      document.getElementById('xTeamName').innerText = `${xTeamName} : `;
    } else {
-     xTeamName = "X ";
+     xTeamName = "X";
+     document.getElementById('xTeamName').innerText = `${xTeamName} : `;
    }
 
    if (oTeamName) {
     document.getElementById('oTeamName').innerText = `${oTeamName} : `;
    } else {
     oTeamName = "O";
-
+    document.getElementById('oTeamName').innerText = `${oTeamName} : `;
    }
 
-   display.innerHTML = `Welcome Conqueror ${xTeamName} & Beast Slayer ${oTeamName}.`
+   display.innerHTML = `Welcome Conqueror ${xTeamName} & Slayer ${oTeamName}.`
 
    setTimeout(function(){
      display.innerHTML = "Make your move!"
@@ -187,10 +184,37 @@ let reset = () => {
 
  }
 
+  //function that loops through the divs/array and checks for a winning pattern
+ //controller
+ let checkForWinner = (mark) => {
+  if(allChildren[0].innerHTML == mark && allChildren[1].innerHTML == mark && allChildren[2].innerHTML == mark) {
+    actionsOnWin(mark);
+  } else if(allChildren[3].innerHTML == mark && allChildren[4].innerHTML == mark && allChildren[5].innerHTML == mark) {
+    actionsOnWin(mark);
+  } else if(allChildren[6].innerHTML == mark && allChildren[7].innerHTML == mark && allChildren[8].innerHTML == mark) {
+    actionsOnWin(mark);
+  } else if(allChildren[0].innerHTML == mark && allChildren[4].innerHTML == mark && allChildren[8].innerHTML == mark) {
+    actionsOnWin(mark);
+  } else if(allChildren[2].innerHTML == mark && allChildren[4].innerHTML == mark && allChildren[6].innerHTML == mark) {
+    actionsOnWin(mark);
+  } else if(allChildren[0].innerHTML == mark && allChildren[3].innerHTML == mark && allChildren[6].innerHTML == mark) {
+    actionsOnWin(mark);
+  } else if(allChildren[1].innerHTML == mark && allChildren[4].innerHTML == mark && allChildren[7].innerHTML == mark) {
+    actionsOnWin(mark);
+  } else if(allChildren[2].innerHTML == mark && allChildren[5].innerHTML == mark && allChildren[8].innerHTML == mark) {
+    actionsOnWin(mark);
+  } else{
+    return null;
+  }
+ }
 
+/*
 
+      GAME INITIALIZATION
+
+*/
 //need to invoke this functin on page load
  giveSpotsFunctionality();
-
+ //assigns team names prior to start of the game
  assignTeamNames();
 
