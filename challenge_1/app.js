@@ -15,6 +15,16 @@
     b keep track of move count
       i. if 9 moves have been played and no one wins its a draw
 
+    Winning Patterns
+              012
+              345
+              678
+              048
+              246
+              036
+              147
+              258
+
 */
 
 //global variables....ewww
@@ -25,6 +35,8 @@ let moveCount = 0;
 let board = document.getElementById('board');
 let allChildren = Array.from(board.children);
 let display = document.getElementById('display');
+
+
 //function that adds a mark to a board location
  let playMove = (event) => {
 
@@ -61,16 +73,7 @@ let display = document.getElementById('display');
  }
 
 
-/*
-              012
-              345
-              678
-              048
-              246
-              036
-              147
-              258
-*/
+
 
 //resets the board markers, counts && scores
 let reset = () => {
@@ -88,33 +91,38 @@ let reset = () => {
  //function that loops through the divs/array and checks for a winning pattern
  let checkForWinner = (mark) => {
   if(allChildren[0].innerHTML == mark && allChildren[1].innerHTML == mark && allChildren[2].innerHTML == mark) {
-    updateTextOnWin(mark);
+    actionsOnWin(mark);
   } else if(allChildren[3].innerHTML == mark && allChildren[4].innerHTML == mark && allChildren[5].innerHTML == mark) {
-    updateTextOnWin(mark);
+    actionsOnWin(mark);
   } else if(allChildren[6].innerHTML == mark && allChildren[7].innerHTML == mark && allChildren[8].innerHTML == mark) {
-    updateTextOnWin(mark);
+    actionsOnWin(mark);
   } else if(allChildren[0].innerHTML == mark && allChildren[4].innerHTML == mark && allChildren[8].innerHTML == mark) {
-    updateTextOnWin(mark);
+    actionsOnWin(mark);
   } else if(allChildren[2].innerHTML == mark && allChildren[4].innerHTML == mark && allChildren[6].innerHTML == mark) {
-    updateTextOnWin(mark);
+    actionsOnWin(mark);
   } else if(allChildren[0].innerHTML == mark && allChildren[3].innerHTML == mark && allChildren[6].innerHTML == mark) {
-    updateTextOnWin(mark);
+    actionsOnWin(mark);
   } else if(allChildren[1].innerHTML == mark && allChildren[4].innerHTML == mark && allChildren[7].innerHTML == mark) {
-    updateTextOnWin(mark);
+    actionsOnWin(mark);
   } else if(allChildren[2].innerHTML == mark && allChildren[5].innerHTML == mark && allChildren[8].innerHTML == mark) {
-    updateTextOnWin(mark);
+    actionsOnWin(mark);
   } else{
     return null;
   }
  }
 
- let updateTextOnWin = (mark) => {
+ let actionsOnWin = (mark) => {
   display.innerHTML = `${mark} wins! Play Again!`;
   //update score
 
   setTimeout(function(){
     reset();
+    if(mark == "O"){
+      whichMark = false;
+    }
   }, 2000)
+
+
  }
 
  //adds event listeners to each spot that listen for click to place move
