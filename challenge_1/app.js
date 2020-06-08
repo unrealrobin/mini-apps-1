@@ -35,6 +35,8 @@ let moveCount = 0;
 let board = document.getElementById('board');
 let allChildren = Array.from(board.children);
 let display = document.getElementById('display');
+let xPoints = 0;
+let oPoints = 0;
 
 
 //function that adds a mark to a board location
@@ -113,7 +115,15 @@ let reset = () => {
 
  let actionsOnWin = (mark) => {
   display.innerHTML = `${mark} wins! Play Again!`;
+
   //update score
+  if (mark == 'X'){
+    xPoints++;
+  }else{
+    oPoints++;
+  }
+
+  assignPoints(mark);
 
   setTimeout(function(){
     reset();
@@ -122,6 +132,17 @@ let reset = () => {
     }
   }, 2000)
 
+
+ }
+
+ let assignPoints = (mark) => {
+  //finding dom elements for each teams score
+  let x = document.getElementById('xTeamPoints');
+  let o = document.getElementById('oTeamPoints');
+
+  //assigning points to those elements
+  x.innerHTML = xPoints.toString();
+  o.innerHTML = oPoints.toString();
 
  }
 
