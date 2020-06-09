@@ -3,14 +3,14 @@
  first move always starts with x
   you can have a tue false variable that switches the value everytime a player plays a move
 
-  1. Display a win or tie
+  1. Display a win or tie [ Complete ]
     a. must keep track of the score
     b. a tie means all spots have been filled and no one has 3 in a row
       i. Must define all possible 3 in a row combinations on the board
-  2. A button that resets the board
+  2. A button that resets the board [ Complete ]
     a. grab all the elements on the board and cleat their inner html text
     b. css grid will make this pretty easy / may not bee able to use css
-  3. on click event add a mark to the board
+  3. on click event add a mark to the board [ Complete ]
     a. after a move is played, run a function that checks the board for wins
     b keep track of move count
       i. if 9 moves have been played and no one wins its a draw
@@ -141,7 +141,7 @@ let reset = () => {
 
  /*
 
-      CONTROLLER
+      CONTROLLERS
 
 */
 
@@ -153,6 +153,7 @@ let reset = () => {
    allChildren.forEach(child => {
     child.addEventListener('click', function(event){
       playMove(event);
+      board.transform = 'rotate(90)';
     })
    })
  };
@@ -217,4 +218,5 @@ let reset = () => {
  giveSpotsFunctionality();
  //assigns team names prior to start of the game
  assignTeamNames();
+
 
