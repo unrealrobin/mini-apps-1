@@ -8,7 +8,7 @@
 */
 
 //function turns json object into  csv style doc
-
+//using transform in the server.js file
 let transform = (jsonObj) => {
   //return a string of all the keys
     //return a string of each nested objs properties for all of those keys

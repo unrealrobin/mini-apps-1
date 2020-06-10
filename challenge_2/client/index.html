@@ -6,9 +6,10 @@
     </title>
   </head>
   <body>
-    <form action='/post' method="POST" id='form1'>
-      <!-- <input type="text" name='jsonInput' id='jsonInput'/> -->
-      <textarea name="jsonInput" form="form1">Enter text here...</textarea>
+    <form action='/post' method="POST" id='form1' enctype="multipart/form-data">
+      <input type="file" name='jsonInput' id='jsonInput' accept='.csv'/>
+      <!-- Actually try sending a file to the server -->
+      <!-- <textarea name="jsonInput" form="form1">Enter text here...</textarea> -->
       <button > Submit </button>
     </form>
     <div id='responseArea'>
