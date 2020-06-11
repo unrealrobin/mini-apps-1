@@ -29,6 +29,5 @@ module.exports = {
   },
   watch: true
 
-  //need to bundle with babel-loader
 
 }
