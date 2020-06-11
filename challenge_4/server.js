@@ -6,8 +6,7 @@ app.use(express.static('./client/dist'));
 
 app.post('/', (req, res) => {
 
-  res.send('Post went through!')
+  res.send('Marker Placed')
 })
 
-app.listen(port, () => console.log('Hello from server.'))
-
+app.listen(port, () => console.log('Hello from server.'));

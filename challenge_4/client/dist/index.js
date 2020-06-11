@@ -86,6 +86,30 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./client/src/components/BoardPiece.js":
+/*!*********************************************!*\
+  !*** ./client/src/components/BoardPiece.js ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n\n\nfunction BoardPiece(props) {\n  let peiceStyles = {\n    width: 50,\n    height: 50,\n    backgroundColor: 'beige',\n    border: '1px solid black',\n    textAlign: 'center',\n    lineHeight: \"50px\"\n  };\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n    style: peiceStyles\n  }, ` ${props['data-x']} , ${props['data-y']} `);\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (BoardPiece);\n\n//# sourceURL=webpack:///./client/src/components/BoardPiece.js?");
+
+/***/ }),
+
+/***/ "./client/src/components/GameBoard.js":
+/*!********************************************!*\
+  !*** ./client/src/components/GameBoard.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _BoardPiece_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BoardPiece.js */ \"./client/src/components/BoardPiece.js\");\n\n\n\nclass GameBoard extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {\n  constructor(props) {\n    super(props);\n    this.generateBoard = this.generateBoard.bind(this);\n    this.state = {\n      boardStyles: {\n        display: \"grid\",\n        gridTemplateColumns: 'repeat(7, 50px)',\n        gridTemplateRows: 'repeat(7, 50px)'\n      }\n    };\n  }\n\n  generateBoard() {\n    let boardRows = [];\n\n    for (let y = 0; y < 7; y++) {\n      for (let x = 0; x < 7; x++) {\n        boardRows.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_BoardPiece_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"], {\n          \"data-x\": x,\n          \"data-y\": y\n        }));\n      }\n    }\n\n    console.log(boardRows);\n    return boardRows;\n  }\n\n  render() {\n    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n      id: \"gameBoard\",\n      style: this.state.boardStyles\n    }, this.generateBoard().map(peice => {\n      return peice;\n    }));\n  }\n\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (GameBoard);\n\n//# sourceURL=webpack:///./client/src/components/GameBoard.js?");
+
+/***/ }),
+
 /***/ "./client/src/components/app.js":
 /*!**************************************!*\
   !*** ./client/src/components/app.js ***!
@@ -94,7 +118,7 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n\n\nclass App extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {\n  render() {\n    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"h1\", null, \"React Rendering Now RObin \"));\n  }\n\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (App); //comments :\n// there should be a board component that provides the spots for the users to click on\n// on click there should be some state logic that changes the color of the peice component\n// there needs to be a peice component that changes color depening on the state of the board component\n//\n\n//# sourceURL=webpack:///./client/src/components/app.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _GameBoard_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./GameBoard.js */ \"./client/src/components/GameBoard.js\");\n\n\n\nclass App extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {\n  render() {\n    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"h1\", null, \"Connect 4\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GameBoard_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"], null));\n  }\n\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (App); //comments :\n// there should be a board component that provides the spots for the users to click on\n// on click there should be some state logic that changes the color of the peice component\n// there needs to be a peice component that changes color depening on the state of the board component\n\n//# sourceURL=webpack:///./client/src/components/app.js?");
 
 /***/ }),
 
